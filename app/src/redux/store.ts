@@ -6,10 +6,18 @@ import {
 } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import thunk from "redux-thunk";
-import { joinSlice } from "./reducers/auth/joinReducer";
+import { loginSlice } from "./reducers/auth/loginReducer";
+import { codeSlice } from "./reducers/code/codeReducer";
+import { indicatorSlice } from "./reducers/indicator/indicatorReducer";
+import { machineSlice } from "./reducers/machine/machineReducer";
+import { mainSlice } from "./reducers/main/mainReducer";
 
 const rootReducer = combineReducers({
-  [joinSlice.name]: joinSlice.reducer,
+  [loginSlice.name]: loginSlice.reducer,
+  [indicatorSlice.name]: indicatorSlice.reducer,
+  [machineSlice.name]: machineSlice.reducer,
+  [mainSlice.name]: mainSlice.reducer,
+  [codeSlice.name]: codeSlice.reducer,
 });
 
 const makeStore = () =>
