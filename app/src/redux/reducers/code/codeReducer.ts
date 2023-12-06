@@ -21,6 +21,12 @@ export const codeSlice = createSlice({
   name: "code",
   initialState,
   reducers: {
+    resetCode: (state) => {
+      state.ncCodeList = [];
+      state.codeDetail = [];
+      state.activeCode = null;
+      state.searchResult = [];
+    },
     setNcCodeList: (state, action) => {
       state.ncCodeList = action.payload.map((code: CodeDto) =>
         plainToInstance(CodeDto, code)
@@ -35,7 +41,7 @@ export const codeSlice = createSlice({
     },
     setActiveCode: (state, action) => {
       const activeCode = state.ncCodeList.find(
-        (code) => +code.name === action.payload
+        (code: CodeDto) => +code.name === action.payload
       );
       state.activeCode = activeCode;
     },
@@ -50,14 +56,19 @@ export const codeSlice = createSlice({
           result.push(i);
         }
       }
-      
+
       state.searchResult = result;
     },
   },
 });
 
-export const { setNcCodeList, setCodeDetail, setActiveCode, searchCode } =
-  codeSlice.actions;
+export const {
+  resetCode,
+  setNcCodeList,
+  setCodeDetail,
+  setActiveCode,
+  searchCode,
+} = codeSlice.actions;
 export const selectCodeState = (state: RootState) => state.code;
 
 export default codeSlice.reducer;
