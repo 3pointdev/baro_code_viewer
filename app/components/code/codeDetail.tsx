@@ -16,8 +16,9 @@ export default function CodeDetail() {
         </div>
         <ul className="p-4 py-16 relative overflow-auto h-full whitespace-pre-wrap text-gray-800 dark:text-gray-200">
           {state.codeDetail.map((code: string, index: number) => {
+            const isSearchResult = state.searchResult.includes(index);
             return (
-              <li key={`code_line_${index}`} className="py-3 flex gap-6">
+              <li key={`code_line_${index}`} className={`py-3 px-4 flex gap-6 ${isSearchResult && 'bg-green-300 text-gray-800'}`}>
                 <p className="w-5">{index + 1}</p>
                 <p>{code}</p>
               </li>

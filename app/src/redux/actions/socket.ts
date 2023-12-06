@@ -1,8 +1,6 @@
-export const socketConnect = (
-  onMessage: (this: WebSocket, ev: MessageEvent<any>) => any
-): any => {
-  let socket: WebSocket;
+let socket: WebSocket;
 
+export const socketConnect = (onMessage: (any: any) => any) => {
   socket = new WebSocket(
     `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}${window.localStorage.getItem(
       "sender"
@@ -25,4 +23,8 @@ export const socketOnError = () => {};
 
 export const socketOnClose = () => {
   console.log("socket disconnect!");
+};
+
+export const socketDisconnect = () => {
+  return () => socket.close();
 };

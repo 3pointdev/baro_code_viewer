@@ -5,6 +5,7 @@ import MachineList from "components/list/machineList";
 import MenuList from "components/list/menuList";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import SocketDataDto from "src/dto/socket/socketData.dto";
 import { socketConnect, socketDisconnect } from "src/redux/actions/socket";
 import {
   setCodeDetail,
@@ -28,7 +29,7 @@ export default function Home() {
     };
   }, []);
 
-  const socketOnMessage = (message) => {
+  const socketOnMessage = (message: SocketDataDto) => {
     if (typeof message.data !== "string") return;
 
     const parsingData = JSON.parse(message.data);

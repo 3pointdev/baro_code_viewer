@@ -4,8 +4,6 @@ import { useAppSelector } from "src/redux/reduxHook";
 export default function LoadingIndicator() {
   const state = useAppSelector(selectIndicatorState);
 
-  console.log(state.activeCount);
-
   return (
     <div
       className={`z-50 ${

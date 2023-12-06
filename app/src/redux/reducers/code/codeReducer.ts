@@ -50,7 +50,8 @@ export const codeSlice = createSlice({
           result.push(i);
         }
       }
-      console.log(result);
+      
+      state.searchResult = result;
     },
   },
 });

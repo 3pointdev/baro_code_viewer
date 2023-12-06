@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { KeyboardEvent, MouseEvent, useState } from "react";
 import {
   searchCode,
   selectCodeState,
@@ -12,7 +12,17 @@ export default function SearchCode() {
   const dispatch = useAppDispatch();
 
   const handleClickSearch = (e: MouseEvent<HTMLButtonElement>) => {
-    dispatch(searchCode(searchValue));
+    if (searchValue.length > 1) {
+      dispatch(searchCode(searchValue));
+    }
+  };
+
+  const handleKeySearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+
+    if (key === "Enter" && searchValue.length > 1) {
+      dispatch(searchCode(searchValue));
+    }
   };
 
   if (state.activeCode)
@@ -35,6 +45,7 @@ export default function SearchCode() {
             placeholder="검색 할 코드를 입력하세요."
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
+            onKeyDown={handleKeySearch}
             required
           />
           <button

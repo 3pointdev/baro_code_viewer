@@ -12,14 +12,17 @@ const initialState: MainState = {
     {
       id: 0,
       title: "전체코드",
+      url:"/"
     },
     {
       id: 1,
       title: "사용코드",
+      url:"/used"
     },
     {
       id: 2,
       title: "코드비교",
+      url:"/"
     },
   ],
   activeMenu: 0,

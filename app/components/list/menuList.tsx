@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import { MouseEvent } from "react";
+import MenuModel from "src/models/menu/menu.model";
 import {
   selectMainState,
   selectMenu,
@@ -6,18 +8,20 @@ import {
 import { useAppDispatch, useAppSelector } from "src/redux/reduxHook";
 
 export default function MenuList() {
+  const router = useRouter();
   const state = useAppSelector(selectMainState);
   const dispatch = useAppDispatch();
 
   const handleClickMenu = (e: MouseEvent<HTMLButtonElement>) => {
-    const { value } = e.currentTarget;
+    const { value, dataset } = e.currentTarget;
 
     dispatch(selectMenu(+value));
+    router.push(dataset.url);
   };
 
   return (
     <div className="flex gap-2 dark:text-white text-gray-800">
-      {state.menu.map((menu) => {
+      {state.menu.map((menu: MenuModel) => {
         return (
           <button
             className={`px-4 py-2 border rounded-t-xl dark:border-gray-300 border-gray-800 border-b-0 ${
@@ -28,6 +32,7 @@ export default function MenuList() {
             key={`${menu.id}_${menu.title}`}
             onClick={handleClickMenu}
             value={menu.id}
+            data-url={menu.url}
           >
             {menu.title}
           </button>
