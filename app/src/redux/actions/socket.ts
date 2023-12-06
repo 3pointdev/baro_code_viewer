@@ -26,5 +26,8 @@ export const socketOnClose = () => {
 };
 
 export const socketDisconnect = () => {
-  return () => socket.close();
+  if (socket?.readyState === 1) {
+    return () => socket.close();
+  }
+  return () => {};
 };
