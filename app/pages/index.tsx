@@ -1,7 +1,7 @@
 import CodeDetail from "components/code/codeDetail";
 import SearchCode from "components/code/searchCode";
 import CodeList from "components/list/codeList";
-import MachineList from "components/list/machineList";
+import MachineListByState from "components/list/machineListByState";
 import MenuList from "components/list/menuList";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -52,7 +52,7 @@ export default function Home() {
           <SearchCode />
         </section>
         <section className="w-full flex border dark:border-gray-300 border-gray-800 rounded-xl h-[calc(100%-28px)]">
-          <MachineList />
+          <MachineListByState />
           <CodeList />
           <CodeDetail />
         </section>

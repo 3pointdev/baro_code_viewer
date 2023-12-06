@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect } from "react";
 import MenuModel from "src/models/menu/menu.model";
 import {
   selectMainState,
@@ -18,6 +18,12 @@ export default function MenuList() {
     dispatch(selectMenu(+value));
     router.push(dataset.url);
   };
+
+  useEffect(() => {
+    const path = router.pathname;
+    const activeMenu = state.menu.find((menu: MenuModel) => menu.url === path);
+    dispatch(selectMenu(activeMenu.id));
+  }, []);
 
   return (
     <div className="flex gap-2 dark:text-white text-gray-800">
