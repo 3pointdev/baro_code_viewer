@@ -19,7 +19,7 @@ export default function RecordList() {
   const handleClickCode = (e: MouseEvent<HTMLLIElement>) => {
     const { id } = e.currentTarget;
 
-    dispatch(fetchProgramDetail(id));
+    dispatch(fetchProgramDetail({ ncCode: id }));
     dispatch(setActiveRecord(+id));
   };
 

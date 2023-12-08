@@ -1,6 +1,8 @@
 import { KeyboardEvent, MouseEvent, useState } from "react";
-import { searchCode } from "src/redux/reducers/code/codeReducer";
-import { selectRecordState } from "src/redux/reducers/code/recordReducer";
+import {
+  searchCode,
+  selectRecordState,
+} from "src/redux/reducers/code/recordReducer";
 import { useAppDispatch, useAppSelector } from "src/redux/reduxHook";
 
 export default function SearchRecord() {
