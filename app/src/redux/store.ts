@@ -8,6 +8,7 @@ import { createWrapper } from "next-redux-wrapper";
 import thunk from "redux-thunk";
 import { loginSlice } from "./reducers/auth/loginReducer";
 import { codeSlice } from "./reducers/code/codeReducer";
+import { compareSlice } from "./reducers/code/compareReducer";
 import { recordSlice } from "./reducers/code/recordReducer";
 import { indicatorSlice } from "./reducers/indicator/indicatorReducer";
 import { machineSlice } from "./reducers/machine/machineReducer";
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   [mainSlice.name]: mainSlice.reducer,
   [codeSlice.name]: codeSlice.reducer,
   [recordSlice.name]: recordSlice.reducer,
+  [compareSlice.name]: compareSlice.reducer,
 });
 
 const makeStore = () =>

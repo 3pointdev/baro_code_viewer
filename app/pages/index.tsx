@@ -18,12 +18,8 @@ export default function Home() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (window.localStorage.getItem("token") === null) {
-      router.replace("/login");
-    } else {
-      dispatch(socketConnect(socketOnMessage));
-      setIsAllowed(true);
-    }
+    dispatch(socketConnect(socketOnMessage));
+    setIsAllowed(true);
 
     return () => {
       dispatch(socketDisconnect());

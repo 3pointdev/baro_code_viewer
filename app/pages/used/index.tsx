@@ -4,18 +4,8 @@ import DatePicker from "components/date/datePicker";
 import MachineList from "components/list/machineList";
 import MenuList from "components/list/menuList";
 import RecordList from "components/list/recordList";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
-export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (window.localStorage.getItem("token") === null) {
-      router.replace("/login");
-    }
-  }, []);
-
+export default function UsedCode() {
   return (
     <article className="bg-gray-300 dark:bg-gray-800 w-screen h-[calc(100vh-60px)] px-4 py-8 overflow-hidden">
       <section className="mx-2 flex justify-between">

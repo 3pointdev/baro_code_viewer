@@ -9,6 +9,12 @@ body {
   border: 0;
   overflow: hidden;
 }
+
+h1,h2,h3,h4 {
+  margin: 0;
+  padding: 0;
+}
+
 @keyframes circle {
   0% {
     top: 60px;
@@ -62,4 +68,26 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #253341 inset;
   box-shadow: 0 0 0px 1000px #253341 inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+.react-datepicker {
+  background: #f0f0f0 !important;
+}
+
+.react-datepicker__month {
+  background: #ffffff !important;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.react-datepicker > * {
+  margin-top:8px;
+}
+
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
 }

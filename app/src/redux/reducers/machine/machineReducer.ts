@@ -6,11 +6,13 @@ import { RootState } from "../../store";
 export interface MachineState {
   list: MachineDto[];
   activeMachine: number | null;
+  activeSubMachine: number | null;
 }
 
 const initialState: MachineState = {
   list: [],
   activeMachine: null,
+  activeSubMachine: null,
 };
 
 export const machineSlice = createSlice({
@@ -25,9 +27,13 @@ export const machineSlice = createSlice({
     selectMachine: (state, action) => {
       state.activeMachine = action.payload;
     },
+    selectSubMachine: (state, action) => {
+      state.activeSubMachine = action.payload;
+    },
   },
 });
 
-export const { setMachine, selectMachine } = machineSlice.actions;
+export const { setMachine, selectMachine, selectSubMachine } =
+  machineSlice.actions;
 export const selectMachineState = (state: RootState) => state.machine;
 export default machineSlice.reducer;

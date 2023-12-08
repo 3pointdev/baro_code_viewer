@@ -1,12 +1,23 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { CompareType } from "config/constants";
 import { Dispatch } from "redux";
+import {
+  setCompareCode,
+  setCriteriaCode,
+} from "../reducers/code/compareReducer";
 import { setRecordDetail } from "../reducers/code/recordReducer";
 import {
   decreaseIndicatorState,
   increaseIndicatorState,
 } from "../reducers/indicator/indicatorReducer";
 
-export const fetchProgramDetail = (ncCode: string) => {
+interface IPayload {
+  ncCode: string;
+  isCompare?: boolean;
+  type?: CompareType;
+}
+
+export const fetchProgramDetail = ({ ncCode, isCompare, type }: IPayload) => {
   const url = `${process.env.NEXT_PUBLIC_BARO_URL}/program/getNcCode/${ncCode}`;
   const api = axios.create({
     headers: {
@@ -23,7 +34,19 @@ export const fetchProgramDetail = (ncCode: string) => {
         },
       })
       .then((result: AxiosResponse) => {
-        dispatch(setRecordDetail(result.data[0].program_code));
+        if (isCompare) {
+          if (type === CompareType.CRITERIA) {
+            dispatch(
+              setCriteriaCode({ code: result.data[0].program_code, id: ncCode })
+            );
+          } else {
+            dispatch(
+              setCompareCode({ code: result.data[0].program_code, id: ncCode })
+            );
+          }
+        } else {
+          dispatch(setRecordDetail(result.data[0].program_code));
+        }
         dispatch(decreaseIndicatorState());
       })
       .catch((error: AxiosError) => {
